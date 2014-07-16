@@ -3,6 +3,7 @@
   %head
     %title Connect Four
     = stylesheet_link_tag 'application', media: 'all'
+    = render 'shared/js_app_config'
     = javascript_include_tag "//js.pusher.com/2.2/pusher.min.js"
     = javascript_include_tag 'application'
     = csrf_meta_tags
