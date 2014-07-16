@@ -3,7 +3,8 @@
     - 1.upto(Game::Board::ROWS).each do |row|
       %tr{class: "row-#{row}"}
         - 1.upto(Game::Board::COLS).each do |col|
-          %td{class: "col-#{col} row-#{row}", data: { x: row, y: col, game_id: @game.id   }}
+          - background_color = @game.board[row, col].try(:user).try(:color) || 'none'
+          %td{class: "col-#{col} row-#{row}", data: { x: row, y: col, game_id: @game.id }, style: "background-color: #{background_color};"}
 
 :javascript
   $(function() {

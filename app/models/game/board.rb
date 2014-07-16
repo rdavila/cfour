@@ -16,4 +16,7 @@ class Game::Board
     end
   end
 
+  def [](row, col) 
+    @movements.find { |m| m.x_position == row && m.y_position == col }
+  end
 end
