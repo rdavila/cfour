@@ -26,8 +26,15 @@ $(function(){
 
         cell.css('background-color', currentUserColor);
       })
-      .fail(function(){
-        alert('Invalid movement');
+      .fail(function(jqXHR, textStatus){
+        var resp = JSON.parse(jqXHR.responseText);
+        var errors = '';
+
+        $.each(resp['errors'], function( index, value ) {
+          errors += value + "\n";
+        });
+
+        alert(errors);
       });
   });
 });

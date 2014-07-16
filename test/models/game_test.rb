@@ -12,7 +12,7 @@ end
 #
 #  id         :integer          not null, primary key
 #  user_id    :integer
-#  finished   :boolean          default(TRUE)
+#  finished   :boolean          default(FALSE)
 #  created_at :datetime
 #  updated_at :datetime
 #

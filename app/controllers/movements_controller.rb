@@ -25,8 +25,9 @@ class MovementsController < ApplicationController
 
     def build_movement
       load_game
+      load_user
 
-      @movement ||= @game.movements.build
+      @movement ||= @game.movements.build(user_id: @user.id)
       @movement.attributes = movement_params
     end
 
