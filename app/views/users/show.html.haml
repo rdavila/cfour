@@ -3,4 +3,4 @@
     - 1.upto(Game::Board::ROWS).each do |row|
       %tr{class: "row-#{row}"}
         - 1.upto(Game::Board::COLS).each do |col|
-          %td{class: "col-#{col}"}
+          %td{class: "col-#{col}", data: { x: row, y: col, game_id: @game.id   }}
