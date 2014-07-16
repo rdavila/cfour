@@ -39,6 +39,7 @@ gem 'spring',        group: :development
 
 gem 'pg', '0.17.1'
 gem 'haml-rails', '0.5.3'
+gem 'pusher', '0.12.0'
 
 group :production do
   gem 'rails_12factor', '0.0.2'

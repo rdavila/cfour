@@ -1,22 +1,24 @@
 $(function(){
-  var currentUserColor = $('#board').data('current-user-color')
+  var gameBoard = $('#board');
+  var currentUserColor = gameBoard.data('current-user-color')
+  var currentUserId = gameBoard.data('current-user-id')
 
-  $('#board table tr').on('mouseover', 'td', function(e){
+  $('table tr', gameBoard).on('mouseover', 'td', function(e){
     var colClass = $(e.target).attr('class').match(/col\-\d/)[0]
 
     $('.' + colClass).addClass('highlight');
   });
 
-  $('#board table tr').on('mouseout', 'td', function(e){
-    $('#board td').removeClass('highlight');
+  $('table tr', gameBoard).on('mouseout', 'td', function(e){
+    $('td', gameBoard).removeClass('highlight');
   });
 
-  $('#board table tr').on('click', 'td', function(e){
+  $('table tr', gameBoard).on('click', 'td', function(e){
     var cell = $(e.target);
     var gameId = cell.data('game-id');
     var currentColumn = cell.data('y');
 
-    $.post('/games/' + gameId + '/movements', { movement: { y_position: currentColumn } })
+    $.post('/games/' + gameId + '/movements', { movement: { y_position: currentColumn }, user_id: currentUserId })
       .done(function(data) {
         var xPosition = data.x_position;
         var yPosition = data.y_position;

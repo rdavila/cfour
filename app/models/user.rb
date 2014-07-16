@@ -1,5 +1,9 @@
 class User < ActiveRecord::Base
   has_many :games
+
+  def opponent
+    User.where.not(id: id).first
+  end
 end
 
 # == Schema Information

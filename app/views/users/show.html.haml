@@ -1,6 +1,17 @@
-#board{ data: { current_user_color: @user.color } }
+#board{ data: { current_user_color: @user.color, current_user_id: @user.id } }
   %table
     - 1.upto(Game::Board::ROWS).each do |row|
       %tr{class: "row-#{row}"}
         - 1.upto(Game::Board::COLS).each do |col|
           %td{class: "col-#{col} row-#{row}", data: { x: row, y: col, game_id: @game.id   }}
+
+:javascript
+  $(function() {
+    var pusher = new Pusher(AppConfig.pusher_key);
+    var channel = pusher.subscribe("user-#{@user.id}");
+
+    channel.bind('piece-moved', function(data) {
+      var cell = $('td.col-' + data.y + '.row-' + data.x);
+      cell.css('background-color', data.color);
+    });
+  });
