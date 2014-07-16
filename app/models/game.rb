@@ -3,6 +3,10 @@ class Game < ActiveRecord::Base
   has_many   :movements
 
   scope :active, -> { where(finished: false) }
+
+  def board
+    @board ||= Game::Board.new(movements)
+  end
 end
 
 # == Schema Information
