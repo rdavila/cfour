@@ -1,6 +1,6 @@
-#board
+#board{ data: { current_user_color: @user.color } }
   %table
     - 1.upto(Game::Board::ROWS).each do |row|
       %tr{class: "row-#{row}"}
         - 1.upto(Game::Board::COLS).each do |col|
-          %td{class: "col-#{col}", data: { x: row, y: col, game_id: @game.id   }}
+          %td{class: "col-#{col} row-#{row}", data: { x: row, y: col, game_id: @game.id   }}

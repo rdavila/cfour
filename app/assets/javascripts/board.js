@@ -1,7 +1,9 @@
 $(function(){
+  var currentUserColor = $('#board').data('current-user-color')
 
   $('#board table tr').on('mouseover', 'td', function(e){
-    var colClass = $(e.target).attr('class');
+    var colClass = $(e.target).attr('class').match(/col\-\d/)[0]
+
     $('.' + colClass).addClass('highlight');
   });
 
@@ -16,7 +18,11 @@ $(function(){
 
     $.post('/games/' + gameId + '/movements', { movement: { y_position: currentColumn } })
       .done(function(data) {
-        console.log(data);
+        var xPosition = data.x_position;
+        var yPosition = data.y_position;
+        var cell = $('td.col-' + yPosition + '.row-' + xPosition);
+
+        cell.css('background-color', currentUserColor);
       })
       .fail(function(){
         alert('Invalid movement');

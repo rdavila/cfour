@@ -1,6 +1,6 @@
 class Game < ActiveRecord::Base
   belongs_to :user
-  has_many   :movements
+  has_many   :movements, dependent: :destroy
 
   scope :active, -> { where(finished: false) }
 
