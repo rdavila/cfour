@@ -3,7 +3,13 @@ class Movement < ActiveRecord::Base
 
   validate :colum_has_available_cell, on: :create
 
+  before_create :set_x_position
+
   private
+
+    def set_x_position
+      self.x_position = game.board.get_available_x_position_for_column(y_position)
+    end
 
     def colum_has_available_cell
       unless game.board.has_available_cell_for_column(y_position)
