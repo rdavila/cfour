@@ -1,4 +1,5 @@
 #board{ data: { current_user_color: @user.color, current_user_id: @user.id } }
+  %p= button_to 'Create new game', user_games_path(@user)
   %table
     - 1.upto(Game::Board::ROWS).each do |row|
       %tr{class: "row-#{row}"}
@@ -14,5 +15,9 @@
     channel.bind('piece-moved', function(data) {
       var cell = $('td.col-' + data.y + '.row-' + data.x);
       cell.css('background-color', data.color);
+    });
+
+    channel.bind('new-game-created', function(data) {
+      location.reload();
     });
   });
