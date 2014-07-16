@@ -10,7 +10,7 @@ class Movement < ActiveRecord::Base
   private
 
     def current_user_has_the_turn
-      if Movement.last.try(:user).try(:color) == user.color
+      if game.movements(true).last.try(:user).try(:color) == user.color
         errors.add(:base, 'Please wait for your turn.')
       end
     end
