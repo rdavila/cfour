@@ -1,0 +1,24 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  finished: false
+
+two:
+  user_id: 
+  finished: false
+
+# == Schema Information
+#
+# Table name: games
+#
+#  id         :integer          not null, primary key
+#  user_id    :integer
+#  finished   :boolean          default(TRUE)
+#  created_at :datetime
+#  updated_at :datetime
+#
+# Indexes
+#
+#  index_games_on_user_id  (user_id)
+#
