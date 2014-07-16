@@ -1,2 +1,6 @@
-%h1 Users#show
-%p Find me in app/views/users/show.html.haml
+#board
+  %table
+    - 1.upto(Game::Board::ROWS).each do |row|
+      %tr{class: "row-#{row}"}
+        - 1.upto(Game::Board::COLS).each do |col|
+          %td{class: "col-#{col}"}
